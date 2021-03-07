@@ -28,9 +28,33 @@
                     $this->start = $origin;
                 }
             }
+        }
 
+        //Loop through main array matching previous destinations to origins
+        //Delete array item once its destination pushed to final array until decodedArray is empty
+        private function completeArray($decodedArray = null) {
+            while($this->decodedArray) {
+                foreach($this->decodedArray as $key => $arr) {
+                    if(in_array($this->start, $arr)) {
+                        array_push($this->final, $arr['to']);
+                        unset($this->decodedArray[$key]);
+                        $this->start = $arr['to'];
+                    }
+                }
+            }
+        }
+
+        function process() {
+            $this->originsAndDestinations($this->decodedArray);
+            $this->setStartPoint($this->origins, $this->destinations);
+            $this->completeArray($this->decodedArray);
+            return json_encode($this->final);
         }
 
     }
+
+    $file = 'input.json';
+    $journey = new Journey($file);
+    print_r($journey->process());
 
 ?>
