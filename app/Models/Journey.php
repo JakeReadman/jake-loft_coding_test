@@ -1,9 +1,15 @@
 <?php 
 
+    namespace App\Models;
+
     class Journey {
-         //Assign variables to types
-         private $input;
-         private $decodedArray;
+        //Assign variables to types
+        private $origins = [];
+        private $destinations = [];
+        private $final = [];
+        private $start;
+        private $input;
+        private $decodedArray;
 
         //extract file contents and convert from json
         function __construct($file) {
@@ -15,8 +21,8 @@
         //Create origins and destinations arrays
         private function originsAndDestinations($decodedArray) {
             foreach($decodedArray as $arr) {
-                array_push($origins, $arr['from']);
-                array_push($destinations, $arr['to']);
+                array_push($this->origins, $arr['from']);
+                array_push($this->destinations, $arr['to']);
             }       
         }
 
@@ -53,8 +59,8 @@
 
     }
 
-    $file = 'input.json';
-    $journey = new Journey($file);
-    print_r($journey->process());
+    // $file = '../..//input/input.json';
+    // $journey = new Journey($file);
+    // print_r($journey->process());
 
 ?>
