@@ -1,0 +1,11 @@
+{
+    "name": "jake/loft_coding_test",
+    "description": "loft_digital_coding_test",
+    "authors": [
+        {
+            "name": "Jake",
+            "email": "jakereadman@gmail.com"
+        }
+    ],
+    "require": {}
+}
