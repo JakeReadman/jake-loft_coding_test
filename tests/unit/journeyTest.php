@@ -15,5 +15,11 @@
             $this->assertEquals($journey->process(), json_encode(["A", "B", "C", "D"]));
         }
 
+        public function testErrorThrownWhenNonLinearJourney() {
+            $journey = new \App\Models\Journey('input/input3.json');
+            $this->expectException(\Exception::class);
+            $this->expectExceptionMessage("non-linear Journey");
+            $journey->process();
+        }
 
     }
