@@ -17,6 +17,13 @@
             $this->decodedArray = json_decode($this->input, true);
         }
 
+        //Test decodedArray not empty
+        private function emptyArrayCheck($decodedArray) {
+            if($decodedArray === []) {
+                throw new \Exception("Empty journey array provided");
+            }
+        }
+
         //Create origins and destinations arrays
         private function originsAndDestinations($decodedArray) {
             foreach($decodedArray as $arr) {
@@ -51,6 +58,7 @@
         
         function process() {
             if(!$this->final) {
+                $this->emptyArrayCheck($this->decodedArray);
                 $this->originsAndDestinations($this->decodedArray);
                 $this->setStartPoint($this->origins, $this->destinations);
                 $this->completeArray($this->decodedArray);
@@ -59,6 +67,6 @@
         }
     }
    
-    // $file = '../../input/input.json';
+    // $file = '../../input/input4.json';
     // $journey = new Journey($file);
     // print_r($journey->process());

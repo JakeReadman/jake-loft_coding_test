@@ -22,4 +22,11 @@
             $journey->process();
         }
 
+        public function testErrorThrownWhenEmptyJsonArrayProvided() {
+            $journey = new \App\Models\Journey('input/input4.json');
+            $this->expectException(\Exception::class);
+            $this->expectExceptionMessage("Empty journey array provided");
+            $journey->process();
+        }
+
     }
